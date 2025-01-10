@@ -3,6 +3,7 @@ streamlit==1.18.1
 pandas==1.5.3
 numpy==1.24.1
 scikit-learn==1.2.1
+setuptools==65.5.0
 plotly==5.21.0
 joblib==1.2.0
-setuptools>=58.0.0
+
