@@ -8,11 +8,11 @@ from sklearn.preprocessing import StandardScaler
 # --------------------------
 # 1. Load Model and Data
 # --------------------------
-
-model = joblib.load("stacking_model.pkl")  # Replace with your actual model path
-
 file_path = r"sepsis.csv"
 df = pd.read_csv(file_path)
+model = joblib.load("stacking_model.pkl")  # Replace with your actual model path
+
+
 
 #scaler = joblib.load("C:/Users/ericr/Downloads/scaler.pkl")         
 
