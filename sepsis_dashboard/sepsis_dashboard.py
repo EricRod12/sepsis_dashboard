@@ -8,9 +8,9 @@ from sklearn.preprocessing import StandardScaler
 # --------------------------
 # 1. Load Model and Data
 # --------------------------
-file_path = r"sepsis.csv"
+file_path = r"sepsis_dashboard/sepsis.csv"
 df = pd.read_csv(file_path)
-model = joblib.load("stacking_model.pkl")  # Replace with your actual model path
+model = joblib.load("sepsis_dashboard/stacking_model.pkl")  # Replace with your actual model path
 
 
 
