@@ -9,12 +9,12 @@ from sklearn.preprocessing import StandardScaler
 # 1. Load Model and Data
 # --------------------------
 
-model = joblib.load("C:/Users/ericr/Downloads/stacking_model.pkl")  # Replace with your actual model path
+model = joblib.load("stacking_model.pkl")  # Replace with your actual model path
 
-file_path = r"C:/Users/ericr/Downloads/sepsis.csv"
+file_path = r"sepsis.csv"
 df = pd.read_csv(file_path)
 
-scaler = joblib.load("C:/Users/ericr/Downloads/scaler.pkl")         
+#scaler = joblib.load("C:/Users/ericr/Downloads/scaler.pkl")         
 
 # Sepsis types and top features
 sepsis_types = ['sepsis_angus', 'sepsis_martin', 'sepsis_explicit', 'septic_shock_explicit', 'severe_sepsis_explicit', 'sepsis_nqf', 'sepsis_cdc', 'sepsis_cdc_simple']
