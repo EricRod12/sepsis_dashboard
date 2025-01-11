@@ -117,7 +117,7 @@ if not filtered_df.empty:
     shap.save_html("force_plot.html", force_plot)
     with open("force_plot.html", "r", encoding="utf-8") as f:
         force_plot_html = f.read()
-    st.components.v1.html(force_plot_html, height=500)
+    st.components.v1.html(force_plot_html, height=500, scrolling=True)
 
 # --------------------------
 # 5. Test Performance Metrics (Static)
