@@ -124,15 +124,29 @@ if not filtered_df.empty:
 # --------------------------
 with open("sepsis_dashboard/test_metrics.json", "r") as f:
     test_metrics = json.load(f)
+threshold = test_metrics["threshold"]
+f1_value = test_metrics["f1_score"]
+classification_rpt = test_metrics["classification_report"]
+conf_matrix = test_metrics["confusion_matrix"]
+roc_auc_value = test_metrics["roc_auc"]
+st.title("Model Performance (Test Set)")
 
-st.subheader("Model Performance (Test Set)")
 col1, col2, col3 = st.columns(3)
+
 with col1:
-    st.metric(label="Threshold", value=f"{test_metrics['threshold']}")
+    st.metric(label="Threshold", value=f"{threshold}")
 with col2:
-    st.metric(label="F1 Score", value=f"{test_metrics['f1_score']:.3f}")
+    st.metric(label="F1 Score", value=f"{f1_value:.3f}")
 with col3:
-    st.metric(label="ROC AUC", value=f"{test_metrics['roc_auc']:.3f}")
+    st.metric(label="ROC AUC", value=f"{roc_auc_value:.3f}")
+
+# Convert dict to DataFrame
+report_df = pd.DataFrame(classification_rpt).transpose()
+
+st.subheader("Classification Report")
+st.table(report_df)
+
+st.subheader("Confusion Matrix (Heatmap)")
 
 st.subheader("Confusion Matrix (Heatmap)")
 fig, ax = plt.subplots(figsize=(1.3, 1.3))
