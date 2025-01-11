@@ -235,12 +235,23 @@ st.table(report_df)
 
 st.subheader("Confusion Matrix (Heatmap)")
 
-fig, ax = plt.subplots()
+# Adjust the figure size
+fig, ax = plt.subplots(figsize=(4, 3))  # Specify width and height in inches
+
+# Create the heatmap
 sns.heatmap(conf_matrix, annot=True, fmt="d", cmap="Blues", cbar=False,
             xticklabels=["Pred 0", "Pred 1"],
             yticklabels=["Actual 0", "Actual 1"],
+            annot_kws={"size": 8},  # Adjust annotation font size
             ax=ax)
-ax.set_title("Confusion Matrix")
+
+# Set title and axis labels
+ax.set_title("Confusion Matrix", fontsize=10)  # Smaller title font size
+ax.set_xlabel("Predicted", fontsize=8)
+ax.set_ylabel("Actual", fontsize=8)
+ax.tick_params(axis='both', which='major', labelsize=8)  # Adjust tick label font size
+
+# Display the plot in Streamlit
 st.pyplot(fig)
 
 # --------------------------
