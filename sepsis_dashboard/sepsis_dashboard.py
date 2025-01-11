@@ -236,7 +236,7 @@ st.table(report_df)
 st.subheader("Confusion Matrix (Heatmap)")
 
 # Adjust the figure size
-fig, ax = plt.subplots(figsize=(4, 3))  # Specify width and height in inches
+fig, ax = plt.subplots(figsize=(2, 1))  # Specify width and height in inches
 
 # Create the heatmap
 sns.heatmap(conf_matrix, annot=True, fmt="d", cmap="Blues", cbar=False,
