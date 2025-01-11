@@ -31,14 +31,14 @@ st.markdown(
 )
 # Load pre-trained model and data
 model = joblib.load("sepsis_dashboard/stacking_model.pkl")
-file_path = r"sepsis.csv"
+file_path = r"sepsis_dashboard/sepsis.csv"
 df = pd.read_csv(file_path, encoding='utf-8', escapechar='\\')
 
-y = pd.read_csv("thirtyday_expire_flag_labels.csv")
+y = pd.read_csv("sepsis_dashboard/thirtyday_expire_flag_labels.csv")
 # Load SHAP values
-shap_values_rf_all = pd.read_csv("shap_vals_rf_sepsis.csv", index_col=0)
-shap_values_rf_test = pd.read_csv("shap_vals_rf_sepsis_X_test.csv", index_col=0)
-X_test= pd.read_csv("X_test_sepsis.csv")
+shap_values_rf_all = pd.read_csv("sepsis_dashboard/shap_vals_rf_sepsis.csv", index_col=0)
+shap_values_rf_test = pd.read_csv("sepsis_dashboard/shap_vals_rf_sepsis_X_test.csv", index_col=0)
+X_test= pd.read_csv("sepsis_dashboard/X_test_sepsis.csv")
 # Sepsis types and top features
 sepsis_types = [
     'sepsis_angus', 'sepsis_martin', 'sepsis_explicit', 
@@ -207,7 +207,7 @@ import json
 import seaborn as sns 
 
 # Load the JSON file
-with open("test_metrics.json", "r") as f:
+with open("sepsis_dashboard/test_metrics.json", "r") as f:
     test_metrics = json.load(f)
 
 
