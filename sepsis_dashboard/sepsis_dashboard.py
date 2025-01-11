@@ -147,8 +147,6 @@ st.subheader("Classification Report")
 st.table(report_df)
 
 st.subheader("Confusion Matrix (Heatmap)")
-
-st.subheader("Confusion Matrix (Heatmap)")
 fig, ax = plt.subplots(figsize=(1.3, 1.3))
 sns.heatmap(
     test_metrics["confusion_matrix"], annot=True, fmt="d", cmap="Blues", cbar=False,
