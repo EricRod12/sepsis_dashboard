@@ -30,7 +30,7 @@ st.markdown(
     """
 )
 # Load pre-trained model and data
-model = joblib.load("stacking_model.pkl")
+model = joblib.load("sepsis_dashboard/stacking_model.pkl")
 file_path = r"sepsis.csv"
 df = pd.read_csv(file_path, encoding='utf-8', escapechar='\\')
 
