@@ -157,8 +157,7 @@ conf_matrix = np.array([[437, 131],
                         [59, 99]])
 
 # Add the Confusion Matrix section to the Streamlit app
-st.markdown("### Confusion Matrix (Heatmap)")
-fig, ax = plt.subplots(figsize=(4, 4))  # Adjusted figure size for better clarity
+fig, ax = plt.subplots(figsize=(2, 2))  # Adjusted figure size for better clarity
 sns.heatmap(
     conf_matrix,
     annot=True,
@@ -167,7 +166,7 @@ sns.heatmap(
     cbar=False,
     xticklabels=["Predicted: No", "Predicted: Yes"],
     yticklabels=["Actual: No", "Actual: Yes"],
-    annot_kws={"size": 10},  # Adjusted annotation font size
+    annot_kws={"size": 5},  # Adjusted annotation font size
     linewidths=0.5,  # Added grid lines between cells
     square=True  # Keep cells square-shaped
 )
