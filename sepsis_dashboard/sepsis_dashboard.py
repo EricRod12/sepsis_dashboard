@@ -166,10 +166,10 @@ for (i, j), val in np.ndenumerate(conf_matrix):
 # Set axis labels and ticks
 ax.set_xticks([0, 1])
 ax.set_yticks([0, 1])
-ax.set_xticklabels(["No", "Yes"], fontsize=8)  # Simplified and standardized labels
-ax.set_yticklabels(["No", "Yes"], fontsize=8)  # Simplified and standardized labels
-ax.set_xlabel("Predicted Labels", fontsize=10)
-ax.set_ylabel("Actual Labels", fontsize=10)
+ax.set_xticklabels(["No", "Yes"], fontsize=6)  # Simplified and standardized labels
+ax.set_yticklabels(["No", "Yes"], fontsize=6)  # Simplified and standardized labels
+ax.set_xlabel("Predicted Labels", fontsize=8)
+ax.set_ylabel("Actual Labels", fontsize=8)
 
 # Remove extra borders
 ax.spines['top'].set_visible(False)
