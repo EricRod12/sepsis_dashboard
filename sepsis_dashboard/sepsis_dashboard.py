@@ -151,35 +151,35 @@ st.table(report_df)
 
 st.markdown("### Confusion Matrix (Heatmap)")
 # Hardcoded confusion matrix values
-
-# Hardcoded confusion matrix values
 conf_matrix = np.array([[437, 131],
                         [59, 99]])
 
-fig, ax = plt.subplots(figsize=(2, 2))  # Adjusted figure size for better clarity
-sns.heatmap(
-    conf_matrix,
-    annot=True,
-    fmt="d",
-    cmap="Blues",
-    cbar=False,
-    xticklabels=["Predicted: No", "Predicted: Yes"],
-    yticklabels=["Actual: No", "Actual: Yes"],
-    annot_kws={"size": 5},  # Adjusted annotation font size
-    linewidths=0.5,  # Added grid lines between cells
-    square=True  # Keep cells square-shaped
-)
+# Add the Confusion Matrix section to the Streamlit app
+st.markdown("### Confusion Matrix (Heatmap)")
 
-# Set axis labels and title
-ax.set_xlabel("Predicted Labels", fontsize=5)
-ax.set_ylabel("Actual Labels", fontsize=5)
-#ax.set_title("Confusion Matrix", fontsize=7, pad=5)
+fig, ax = plt.subplots(figsize=(3, 3), dpi=150)  # Higher DPI for better resolution
+cax = ax.imshow(conf_matrix, cmap="Blues", interpolation="nearest")
 
-# Adjust tick label sizes
-ax.tick_params(axis='x', labelsize=5)  # Adjust x-axis tick label size
-ax.tick_params(axis='y', labelsize=5)  # Adjust y-axis tick label size
+# Add color bar
+fig.colorbar(cax)
 
-# Display the heatmap in the Streamlit app
+# Annotate the matrix
+for (i, j), val in np.ndenumerate(conf_matrix):
+    ax.text(j, i, f"{val}", ha="center", va="center", fontsize=10, color="black")
+
+# Set axis labels and ticks
+ax.set_xticks([0, 1])
+ax.set_yticks([0, 1])
+ax.set_xticklabels(["Predicted: No", "Predicted: Yes"], fontsize=10)
+ax.set_yticklabels(["Actual: No", "Actual: Yes"], fontsize=10)
+ax.set_xlabel("Predicted Labels", fontsize=12)
+ax.set_ylabel("Actual Labels", fontsize=12)
+#ax.set_title("Confusion Matrix", fontsize=14, pad=10)
+
+# Tight layout to reduce padding
+plt.tight_layout()
+
+# Display the confusion matrix in Streamlit
 st.pyplot(fig)
 
 # --------------------------
