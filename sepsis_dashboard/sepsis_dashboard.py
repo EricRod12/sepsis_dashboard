@@ -150,7 +150,7 @@ st.markdown("### Classification Report")
 st.table(report_df)
 
 st.markdown("### Confusion Matrix (Heatmap)")
-fig, ax = plt.subplots(figsize=(3, 3))  # Adjusted figure size to make it more compact
+fig, ax = plt.subplots(figsize=(1, 1))  # Adjusted figure size to make it more compact
 sns.heatmap(
     test_metrics["confusion_matrix"], 
     annot=True, 
@@ -159,7 +159,7 @@ sns.heatmap(
     cbar=False, 
     xticklabels=["Pred 0", "Pred 1"], 
     yticklabels=["Actual 0", "Actual 1"], 
-    annot_kws={"size": 8},  # Reduced font size for annotations
+    annot_kws={"size": 4},  # Reduced font size for annotations
     square=True,  # Ensure square cells for better visibility
     linewidths=0.5,  # Add thin lines between boxes for clarity
     ax=ax
