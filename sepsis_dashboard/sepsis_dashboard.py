@@ -150,24 +150,33 @@ st.markdown("### Classification Report")
 st.table(report_df)
 
 st.markdown("### Confusion Matrix (Heatmap)")
-fig, ax = plt.subplots(figsize=(1, 1))  # Adjusted figure size to make it more compact
-sns.heatmap(
-    test_metrics["confusion_matrix"], 
-    annot=True, 
-    fmt="d", 
-    cmap="Blues", 
-    cbar=False, 
-    xticklabels=["Pred 0", "Pred 1"], 
-    yticklabels=["Actual 0", "Actual 1"], 
-    annot_kws={"size": 4},  # Reduced font size for annotations
-    square=True,  # Ensure square cells for better visibility
-    linewidths=0.5,  # Add thin lines between boxes for clarity
-    ax=ax
-)
-ax.set_title("Confusion Matrix", fontsize=6)  # Reduced title font size
-ax.tick_params(axis='both', labelsize=4)  # Adjusted axis label font size
-st.pyplot(fig)
+# Hardcoded confusion matrix values
+conf_matrix = np.array([[437, 131],
+                        [59, 99]])
 
+# Plot the confusion matrix
+fig, ax = plt.subplots(figsize=(4, 4))  # Adjusted figure size for better clarity
+sns.heatmap(
+    conf_matrix,
+    annot=True,
+    fmt="d",
+    cmap="Blues",
+    cbar=False,
+    xticklabels=["Predicted: No", "Predicted: Yes"],
+    yticklabels=["Actual: No", "Actual: Yes"],
+    annot_kws={"size": 10},  # Adjusted annotation font size
+    linewidths=0.5,  # Added grid lines between cells
+    square=True  # Keep cells square-shaped
+)
+
+# Set axis labels and title
+ax.set_xlabel("Predicted Labels", fontsize=12)
+ax.set_ylabel("Actual Labels", fontsize=12)
+ax.set_title("Confusion Matrix", fontsize=14, pad=10)
+
+# Tight layout for clean display
+plt.tight_layout()
+plt.show()
 # --------------------------
 # 7. Patient Risk Distribution
 # --------------------------
