@@ -8,13 +8,14 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.metrics import classification_report, confusion_matrix, roc_auc_score
 import json
+
 # --------------------------
 # 1. Load Model and Data
 # --------------------------
 st.title("Sepsis Patient Risk Dashboard")
 st.markdown(
     """
-    ### Application Overview
+    #### Application Overview
     This application demonstrates a **Sepsis Patient Risk** model using a **Stacked Ensemble** approach. You can:
     
     - Filter patients by different clinical features (using the sidebar).
@@ -22,7 +23,7 @@ st.markdown(
     - Explore **SHAP** explanations for individual predictions.
     - Review **static performance metrics** on the hold-out test set.
     
-    ### Instructions
+    #### Instructions
     1. **Filter Patients**: Use the sidebar to select sepsis types and adjust clinical feature ranges.
     2. **Explore Predictions**: Observe the **Summary Metrics** section for filtered results.
     3. **SHAP Visualizations**: Use the dropdown to analyze individual predictions or explore the global feature importance.
@@ -89,7 +90,7 @@ if not filtered_df.empty:
     shap_values_filtered = shap_values_filtered.loc[filtered_df.index]
 
     # Summary Metrics
-    st.subheader("Summary Metrics")
+    st.markdown("### Summary Metrics")
     total_patients = len(filtered_df)
     died_count = filtered_df["thirtyday_expire_flag"].sum()
     predicted_deaths = (filtered_df['predicted_probability'] >= 0.5).sum()
@@ -103,7 +104,7 @@ if not filtered_df.empty:
 # --------------------------
 # 4. SHAP Force Plot
 # --------------------------
-st.subheader("SHAP Force Plot for Individual Predictions")
+st.markdown("### SHAP Force Plot for Individual Predictions")
 if not filtered_df.empty:
     selected_patient_index = st.selectbox(
         "Select a Patient for Force Plot:",
@@ -131,7 +132,7 @@ f1_value = test_metrics["f1_score"]
 classification_rpt = test_metrics["classification_report"]
 conf_matrix = test_metrics["confusion_matrix"]
 roc_auc_value = test_metrics["roc_auc"]
-st.title("Model Performance (Test Set)")
+st.markdown("### Model Performance (Test Set)")
 
 col1, col2, col3 = st.columns(3)
 
@@ -145,43 +146,15 @@ with col3:
 # Convert dict to DataFrame
 report_df = pd.DataFrame(classification_rpt).transpose()
 
-st.subheader("Classification Report")
+st.markdown("### Classification Report")
 st.table(report_df)
 
-st.subheader("Confusion Matrix (Heatmap)")
-fig, ax = plt.subplots(figsize=(1.3, 1.3))
+st.markdown("### Confusion Matrix (Heatmap)")
+fig, ax = plt.subplots(figsize=(4, 4))
 sns.heatmap(
     test_metrics["confusion_matrix"], annot=True, fmt="d", cmap="Blues", cbar=False,
     xticklabels=["Pred 0", "Pred 1"], yticklabels=["Actual 0", "Actual 1"],
-    annot_kws={"size": 8}, ax=ax
+    annot_kws={"size": 10}, ax=ax
 )
-ax.set_title("Confusion Matrix", fontsize=10)
+ax.set_title("Confusion Matrix", fontsize=12)
 st.pyplot(fig)
-
-# --------------------------
-# 6. SHAP Summary Plot (Global)
-# --------------------------
-if st.checkbox("Show SHAP Summary Plot (Global)"):
-    st.subheader("SHAP Summary Plot (Global)")
-    fig, ax = plt.subplots()
-    shap.summary_plot(shap_values_rf_test.values, X_test, feature_names=top_features, show=False)
-    st.pyplot(fig)
-
-# --------------------------
-# 7. Patient Risk Distribution
-# --------------------------
-st.subheader("Patient Risk Distribution")
-fig = px.histogram(
-    filtered_df, x="predicted_probability", nbins=20,
-    title="Distribution of Predicted Probabilities",
-    labels={"predicted_probability": "Predicted Probability of Death"},
-    color_discrete_sequence=["#636EFA"]
-)
-st.plotly_chart(fig)
-
-# --------------------------
-# 8. Show Filtered Data
-# --------------------------
-if st.checkbox("Show Filtered Data"):
-    st.subheader("Filtered Data")
-    st.dataframe(filtered_df)
