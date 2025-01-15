@@ -156,7 +156,6 @@ st.markdown("### Confusion Matrix (Heatmap)")
 conf_matrix = np.array([[437, 131],
                         [59, 99]])
 
-# Add the Confusion Matrix section to the Streamlit app
 fig, ax = plt.subplots(figsize=(2, 2))  # Adjusted figure size for better clarity
 sns.heatmap(
     conf_matrix,
@@ -172,12 +171,17 @@ sns.heatmap(
 )
 
 # Set axis labels and title
-ax.set_xlabel("Predicted Labels", fontsize=6)
-ax.set_ylabel("Actual Labels", fontsize=6)
-ax.set_title("Confusion Matrix", fontsize=7, pad=5)
+ax.set_xlabel("Predicted Labels", fontsize=5)
+ax.set_ylabel("Actual Labels", fontsize=5)
+#ax.set_title("Confusion Matrix", fontsize=7, pad=5)
+
+# Adjust tick label sizes
+ax.tick_params(axis='x', labelsize=5)  # Adjust x-axis tick label size
+ax.tick_params(axis='y', labelsize=5)  # Adjust y-axis tick label size
 
 # Display the heatmap in the Streamlit app
 st.pyplot(fig)
+
 # --------------------------
 # 7. Patient Risk Distribution
 # --------------------------
