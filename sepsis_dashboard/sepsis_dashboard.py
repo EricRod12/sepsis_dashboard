@@ -164,8 +164,8 @@ sns.heatmap(
     linewidths=0.5,  # Add thin lines between boxes for clarity
     ax=ax
 )
-ax.set_title("Confusion Matrix", fontsize=10)  # Reduced title font size
-ax.tick_params(axis='both', labelsize=8)  # Adjusted axis label font size
+ax.set_title("Confusion Matrix", fontsize=6)  # Reduced title font size
+ax.tick_params(axis='both', labelsize=4)  # Adjusted axis label font size
 st.pyplot(fig)
 
 # --------------------------
