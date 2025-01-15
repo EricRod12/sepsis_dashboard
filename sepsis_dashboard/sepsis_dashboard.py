@@ -150,11 +150,30 @@ st.markdown("### Classification Report")
 st.table(report_df)
 
 st.markdown("### Confusion Matrix (Heatmap)")
-fig, ax = plt.subplots(figsize=(4, 4))
+fig, ax = plt.subplots(figsize=(2, 2))
 sns.heatmap(
     test_metrics["confusion_matrix"], annot=True, fmt="d", cmap="Blues", cbar=False,
     xticklabels=["Pred 0", "Pred 1"], yticklabels=["Actual 0", "Actual 1"],
-    annot_kws={"size": 10}, ax=ax
+    annot_kws={"size": 7}, ax=ax
 )
 ax.set_title("Confusion Matrix", fontsize=12)
 st.pyplot(fig)
+
+# --------------------------
+# 7. Patient Risk Distribution
+# --------------------------
+st.subheader("Patient Risk Distribution")
+fig = px.histogram(
+    filtered_df, x="predicted_probability", nbins=20,
+    title="Distribution of Predicted Probabilities",
+    labels={"predicted_probability": "Predicted Probability of Death"},
+    color_discrete_sequence=["#636EFA"]
+)
+st.plotly_chart(fig)
+
+# --------------------------
+# 8. Show Filtered Data
+# --------------------------
+if st.checkbox("Show Filtered Data"):
+    st.subheader("Filtered Data")
+    st.dataframe(filtered_df)
