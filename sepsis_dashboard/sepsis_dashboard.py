@@ -151,13 +151,12 @@ st.table(report_df)
 
 st.markdown("### Confusion Matrix (Heatmap)")
 # Hardcoded confusion matrix values
-conf_matrix = np.array([[437, 131],
-                        [59, 99]])
+
 
 # Plot the confusion matrix
 fig, ax = plt.subplots(figsize=(4, 4))  # Adjusted figure size for better clarity
 sns.heatmap(
-    conf_matrix,
+    np.array([[437, 131],[59, 99]]),
     annot=True,
     fmt="d",
     cmap="Blues",
