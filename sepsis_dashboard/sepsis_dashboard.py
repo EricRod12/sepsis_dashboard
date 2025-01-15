@@ -156,21 +156,24 @@ conf_matrix = np.array([[437, 131],
 
 # Add the Confusion Matrix section to the Streamlit app
 
-fig, ax = plt.subplots(figsize=(1.5, 1.5), dpi=150)  # Higher DPI for better resolution
+fig, ax = plt.subplots(figsize=(2, 2), dpi=150)  # Adjusted figure size and DPI for clarity
 cax = ax.imshow(conf_matrix, cmap="Blues", interpolation="nearest")
-
 
 # Annotate the matrix
 for (i, j), val in np.ndenumerate(conf_matrix):
-    ax.text(j, i, f"{val}", ha="center", va="center", fontsize=6, color="black")
+    ax.text(j, i, f"{val}", ha="center", va="center", fontsize=8, color="black")  # Adjusted font size
 
 # Set axis labels and ticks
 ax.set_xticks([0, 1])
 ax.set_yticks([0, 1])
-#ax.set_xticklabels(["Predicted: No", "Predicted: Yes"], fontsize=10)
-#ax.set_yticklabels(["Actual: No", "Actual: Yes"], fontsize=10)
-ax.set_xlabel("Predicted Labels", fontsize=6)
-ax.set_ylabel("Actual Labels", fontsize=6)
+ax.set_xticklabels(["No", "Yes"], fontsize=8)  # Simplified and standardized labels
+ax.set_yticklabels(["No", "Yes"], fontsize=8)  # Simplified and standardized labels
+ax.set_xlabel("Predicted Labels", fontsize=10)
+ax.set_ylabel("Actual Labels", fontsize=10)
+
+# Remove extra borders
+ax.spines['top'].set_visible(False)
+ax.spines['right'].set_visible(False)
 
 # Tight layout to reduce padding
 plt.tight_layout()
