@@ -152,11 +152,15 @@ st.table(report_df)
 st.markdown("### Confusion Matrix (Heatmap)")
 # Hardcoded confusion matrix values
 
+# Hardcoded confusion matrix values
+conf_matrix = np.array([[437, 131],
+                        [59, 99]])
 
-# Plot the confusion matrix
+# Add the Confusion Matrix section to the Streamlit app
+st.markdown("### Confusion Matrix (Heatmap)")
 fig, ax = plt.subplots(figsize=(4, 4))  # Adjusted figure size for better clarity
 sns.heatmap(
-    np.array([[437, 131],[59, 99]]),
+    conf_matrix,
     annot=True,
     fmt="d",
     cmap="Blues",
@@ -173,9 +177,8 @@ ax.set_xlabel("Predicted Labels", fontsize=12)
 ax.set_ylabel("Actual Labels", fontsize=12)
 ax.set_title("Confusion Matrix", fontsize=14, pad=10)
 
-# Tight layout for clean display
-plt.tight_layout()
-plt.show()
+# Display the heatmap in the Streamlit app
+st.pyplot(fig)
 # --------------------------
 # 7. Patient Risk Distribution
 # --------------------------
