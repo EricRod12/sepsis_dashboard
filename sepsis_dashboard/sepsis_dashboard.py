@@ -174,7 +174,7 @@ sns.heatmap(
 # Set axis labels and title
 ax.set_xlabel("Predicted Labels", fontsize=6)
 ax.set_ylabel("Actual Labels", fontsize=6)
-ax.set_title("Confusion Matrix", fontsize=7, pad=10)
+ax.set_title("Confusion Matrix", fontsize=7, pad=5)
 
 # Display the heatmap in the Streamlit app
 st.pyplot(fig)
