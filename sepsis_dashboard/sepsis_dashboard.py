@@ -156,11 +156,9 @@ conf_matrix = np.array([[437, 131],
 
 # Add the Confusion Matrix section to the Streamlit app
 
-fig, ax = plt.subplots(figsize=(1.5, 1.5), dpi=300)  # Higher DPI for better resolution
+fig, ax = plt.subplots(figsize=(1.5, 1.5), dpi=150)  # Higher DPI for better resolution
 cax = ax.imshow(conf_matrix, cmap="Blues", interpolation="nearest")
 
-# Add color bar
-fig.colorbar(cax)
 
 # Annotate the matrix
 for (i, j), val in np.ndenumerate(conf_matrix):
@@ -173,7 +171,6 @@ ax.set_yticks([0, 1])
 #ax.set_yticklabels(["Actual: No", "Actual: Yes"], fontsize=10)
 ax.set_xlabel("Predicted Labels", fontsize=6)
 ax.set_ylabel("Actual Labels", fontsize=6)
-#ax.set_title("Confusion Matrix", fontsize=14, pad=10)
 
 # Tight layout to reduce padding
 plt.tight_layout()
