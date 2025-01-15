@@ -150,11 +150,11 @@ st.markdown("### Classification Report")
 st.table(report_df)
 
 st.markdown("### Confusion Matrix (Heatmap)")
-fig, ax = plt.subplots(figsize=(2, 2))
+fig, ax = plt.subplots(figsize=(1.5, 1.5))
 sns.heatmap(
     test_metrics["confusion_matrix"], annot=True, fmt="d", cmap="Blues", cbar=False,
     xticklabels=["Pred 0", "Pred 1"], yticklabels=["Actual 0", "Actual 1"],
-    annot_kws={"size": 7}, ax=ax
+    annot_kws={"size": 10}, ax=ax
 )
 ax.set_title("Confusion Matrix", fontsize=12)
 st.pyplot(fig)
